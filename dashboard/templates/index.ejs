@@ -1,5 +1,527 @@
-<%- include("partials/header", { bot, user, path, title: "Home" }) %>
 
-<a href="/dashboard">Go to Dashboard</a><br>
 
-<%- include("partials/footer") %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Frying Pan Bot</title>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fryingpanbot.tk" />
+		<meta name="theme-color" content="blue">
+        <meta property="og:title" content="Frying Pan Bot" />
+        <meta property="og:description" content="The bot that does it all" />
+        <meta property="og:image" content="https://cdn.discordapp.com/avatars/738446520952815679/f1184f83626ecaaf1bfc116ee5c20cc2.pngg" />
+        <link rel="icon" href="https://cdn.discordapp.com/avatars/738446520952815679/f1184f83626ecaaf1bfc116ee5c20cc2.png">
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" />
+        <script src="https://kit.fontawesome.com/6ca40ab5f2.js" crossorigin="anonymous" type="6e2f93ac74d030ae5f49da8e-text/javascript"></script>
+        <style id="__jsx-2700883691">
+            header.jsx-2700883691 {
+                height: 70px;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                z-index: 1000;
+            }
+            @media (min-width: 43.75em) {
+                header.jsx-2700883691 {
+                    height: 90px;
+                }
+            }
+            .container.jsx-2700883691 {
+                max-width: 1280px;
+                width: 100%;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                margin: 0 auto;
+                padding: 0 40px;
+            }
+            .inner.jsx-2700883691 {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-flex: 1 1 0;
+                -ms-flex: 1 1 0;
+                flex: 1 1 0;
+            }
+            .logo.jsx-2700883691 {
+                -webkit-align-self: center;
+                -ms-flex-item-align: center;
+                align-self: center;
+                position: relative;
+                width: 125px;
+                height: 26px;
+            }
+            .logo.jsx-2700883691 a.jsx-2700883691 {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-text-decoration: none;
+                text-decoration: none;
+            }
+            .logo.jsx-2700883691 svg.jsx-2700883691 {
+                -webkit-flex-shrink: 0;
+                -ms-flex-negative: 0;
+                flex-shrink: 0;
+                height: 26px;
+            }
+            .logo.jsx-2700883691 span.jsx-2700883691 {
+                color: #303030;
+                position: absolute;
+                right: 0;
+                font-family: "Inter", sans-serif;
+                font-weight: 600;
+            }
+            nav.jsx-2700883691 {
+                -webkit-align-self: center;
+                -ms-flex-item-align: center;
+                align-self: center;
+            }
+            ul.desktop.jsx-2700883691 {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: none;
+            }
+            @media (min-width: 71.25em) {
+                ul.desktop.jsx-2700883691 {
+                    display: block;
+                }
+            }
+            ul.desktop.jsx-2700883691 li.jsx-2700883691 {
+                display: inline-block;
+            }
+            ul.desktop.jsx-2700883691 li.jsx-2700883691:not(:last-child) {
+                margin-right: 48px;
+            }
+            ul.desktop.jsx-2700883691 li.jsx-2700883691 a.jsx-2700883691 {
+                color: #303030;
+                -webkit-text-decoration: none;
+                text-decoration: none;
+                font-family: "Inter", sans-serif;
+                font-weight: 400;
+                -webkit-transition: color 180ms ease-out 0s;
+                transition: color 180ms ease-out 0s;
+            }
+            ul.desktop.jsx-2700883691 li.jsx-2700883691 a.jsx-2700883691:hover {
+                color: #1976d2;
+            }
+            ul.desktop.jsx-2700883691 li.jsx-2700883691 a.button.jsx-2700883691 {
+                height: 38px;
+                font-weight: 500;
+                padding: 0 12px;
+                line-height: 48px;
+                display: -webkit-inline-box;
+                display: -webkit-inline-flex;
+                display: -ms-inline-flexbox;
+                display: inline-flex;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                text-align: right;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                font-size: 16px;
+                cursor: pointer;
+                background-color: rgba(25, 118, 210, 0.08);
+                color: #1976d2;
+                box-shadow: rgba(25, 118, 210, 0.08) 0 0 0 1px;
+                border-radius: 4px;
+                -webkit-transition: all 180ms ease-out 0s;
+                transition: all 180ms ease-out 0s;
+            }
+            ul.desktop.jsx-2700883691 li.jsx-2700883691 a.button.jsx-2700883691:hover {
+                color: #fff;
+                box-shadow: #1976d2 0 0 0 1px, rgba(25, 118, 210, 0.08) 0 5px 7px -2px;
+                background: #1976d2;
+            }
+            .mobile.jsx-2700883691 {
+                display: block;
+            }
+            @media (min-width: 71.25em) {
+                .mobile.jsx-2700883691 {
+                    display: none;
+                }
+            }
+            .icon.jsx-2700883691 {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            .icon.jsx-2700883691 > div.jsx-2700883691 {
+                width: 17px;
+                height: 9px;
+                position: relative;
+            }
+            .icon.jsx-2700883691 > div.jsx-2700883691 span.jsx-2700883691 {
+                display: inline-block;
+                background-color: rgb(11, 37, 75);
+                width: 100%;
+                height: 2px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                border-radius: 10px;
+                -webkit-transition: -webkit-transform 200ms ease-out 0s;
+                -webkit-transition: transform 200ms ease-out 0s;
+                transition: transform 200ms ease-out 0s;
+            }
+            .icon.jsx-2700883691 > div.jsx-2700883691 span.jsx-2700883691:last-child {
+                -webkit-transform: translateY(7px);
+                -ms-transform: translateY(7px);
+                transform: translateY(7px);
+            }
+            .icon.open.jsx-2700883691 > div.jsx-2700883691 span.jsx-2700883691:first-child {
+                -webkit-transform: translateY(3px) rotate(45deg);
+                -ms-transform: translateY(3px) rotate(45deg);
+                transform: translateY(3px) rotate(45deg);
+            }
+            .icon.open.jsx-2700883691 > div.jsx-2700883691 span.jsx-2700883691:last-child {
+                -webkit-transform: translateY(3px) rotate(-45deg);
+                -ms-transform: translateY(3px) rotate(-45deg);
+                transform: translateY(3px) rotate(-45deg);
+            }
+            .mobile-menu.jsx-2700883691 {
+                position: absolute;
+                top: 70px;
+                background-color: #fff;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                -webkit-box-pack: justify;
+                -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                visibility: hidden;
+                opacity: 0;
+                padding: 0 40px 40px;
+                overflow: auto;
+                -webkit-transition: visibility 0s ease 0s, opacity 200ms linear 0s;
+                transition: visibility 0s ease 0s, opacity 200ms linear 0s;
+            }
+            .mobile-menu.open.jsx-2700883691 {
+                visibility: visible;
+                opacity: 1;
+            }
+            @media (min-width: 43.75em) {
+                .mobile-menu.jsx-2700883691 {
+                    top: 90px;
+                }
+            }
+            .mobile-menu.jsx-2700883691 > ul.jsx-2700883691 {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            .mobile-menu.jsx-2700883691 > ul.jsx-2700883691 li.jsx-2700883691 {
+                font-size: 24px;
+                border-bottom: 1px solid rgba(11, 37, 75, 0.1);
+            }
+            .mobile-menu.jsx-2700883691 > ul.jsx-2700883691 li.jsx-2700883691 a.jsx-2700883691 {
+                display: inline-block;
+                width: 100%;
+                padding: 18px 0;
+                color: #303030;
+                -webkit-text-decoration: none;
+                text-decoration: none;
+                font-family: "Inter", sans-serif;
+            }
+        </style>
+        <style id="__jsx-807979791">
+            .container.jsx-807979791 {
+                max-width: 1280px;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                margin: 0 auto;
+                padding: 0 40px;
+            }
+            .hero.jsx-807979791 {
+                margin-top: 10px;
+            }
+            .row.jsx-807979791 {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                flex-direction: row;
+            }
+            .text.jsx-807979791 {
+                width: 600px;
+                margin-right: 40px;
+                padding-top: 120px;
+            }
+            .heading.jsx-807979791 {
+                white-space: pre-line;
+                font-size: 52px;
+                line-height: 66px;
+                font-family: "Inter", sans-serif;
+                font-weight: 600;
+                margin-bottom: 26px;
+                -webkit-letter-spacing: 0;
+                -moz-letter-spacing: 0;
+                -ms-letter-spacing: 0;
+                letter-spacing: 0;
+                margin-top: 0;
+            }
+            .subheading.jsx-807979791 {
+                white-space: pre-line;
+                font-size: 20px;
+                line-height: 30px;
+                color: rgba(11, 37, 75, 0.7);
+                margin: 0 0 24px;
+                font-family: "Inter", sans-serif;
+            }
+            .buttons.jsx-807979791 {
+                margin-top: 48px;
+            }
+            .button.jsx-807979791 {
+                height: 48px;
+                line-height: 48px;
+                display: -webkit-inline-box;
+                display: -webkit-inline-flex;
+                display: -ms-inline-flexbox;
+                display: inline-flex;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                font-size: 16px;
+                font-weight: 600;
+                font-family: "Inter", sans-serif;
+                -webkit-text-decoration: none;
+                text-decoration: none;
+                cursor: pointer;
+                background-color: #1976d2;
+                color: #fff;
+                box-shadow: #1976d2 0 0 0 1px, rgba(11, 37, 75, 0.12) 0 5px 7px -2px;
+                padding: 0 24px;
+                border-radius: 4px;
+                -webkit-transition: all 180ms ease-out 0s;
+                transition: all 180ms ease-out 0s;
+            }
+            .button.jsx-807979791:hover {
+                background: rgb(31, 105, 209);
+                box-shadow: rgb(31, 105, 209) 0 0 0 1px, rgba(11, 37, 75, 0.08) 0 5px 7px -2px;
+            }
+        </style>
+        <style id="__jsx-3423290844">
+            .container.jsx-3423290844 {
+                max-width: 1280px;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                margin: 0 auto;
+                padding: 0 40px;
+            }
+            .sponsors.jsx-3423290844 {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-column-gap: 1rem;
+                padding: 120px 0 0;
+            }
+            .sponsor.jsx-3423290844 {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+            }
+            .sponsor.jsx-3423290844 img.invert.jsx-3423290844 {
+                -webkit-filter: invert(100%);
+                filter: invert(100%);
+            }
+        </style>
+        <style id="__jsx-3541774470">
+            .container.jsx-3541774470 {
+                max-width: 1280px;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                margin: 0 auto;
+                padding: 0 40px;
+            }
+            footer.jsx-3541774470 {
+                margin-top: 140px;
+            }
+            .copyright.jsx-3541774470 {
+                padding-top: 48px;
+                margin-bottom: 48px;
+                border-top: 1px solid rgba(11, 37, 75, 0.1);
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                font-family: "Inter", sans-serif;
+                font-size: 14px;
+                line-height: 24px;
+            }
+            ul.jsx-3541774470 {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            li.jsx-3541774470 {
+                display: block;
+            }
+            li.jsx-3541774470:not(:last-child) {
+                margin-bottom: 10px;
+            }
+            @media (min-width: 62.5em) {
+                li.jsx-3541774470 {
+                    display: inline-block;
+                }
+                li.jsx-3541774470:not(:last-child) {
+                    margin-bottom: 0;
+                    margin-right: 48px;
+                }
+            }
+            li.jsx-3541774470 a.jsx-3541774470 {
+                color: rgba(11, 37, 75, 0.7);
+                -webkit-text-decoration: none;
+                text-decoration: none;
+                -webkit-transition: all 180ms ease-out 0s;
+                transition: all 180ms ease-out 0s;
+            }
+            li.jsx-3541774470 a.jsx-3541774470:hover {
+                color: #1976d2;
+            }
+        </style>
+        <style id="__jsx-3370266817">
+            body {
+                margin: 0;
+                padding: 0;
+                background-image: url("./background.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: top;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include("partials/header", { bot, user, path, title: "Home" }) %>
+        <div id="__next">
+            <header class="jsx-2700883691">
+                <div class="jsx-2700883691 container">
+                    <div class="jsx-2700883691 inner"></div>
+                                   
+
+                        <nav class="jsx-2700883691">
+                            <ul class="jsx-2700883691 desktop">
+                                <li class="jsx-2700883691"><a class="jsx-2700883691" href="https://dsc.gg/fryingpanbot">Support Server</a></li>
+                                <li class="jsx-2700883691"><a class="jsx-2700883691" href="https://bit.ly/fryingpanbot">Add the bot</a></li>
+                                <li class="jsx-2700883691"><a class="jsx-2700883691" href="./dashboard">Dashboard</a></li>
+                                <% if (user) { %>
+                                       <li class="jsx-2700883691" ><a class="jsx-2700883691 button"
+                                    
+                                       href="./logout">Logout</a></li>
+                                         <% } else { %>
+                                       <li class="jsx-2700883691"><a class="jsx-2700883691 button"
+                                       href="./login">Login</a></li>
+  <% } %>
+                            </ul>
+                            <div class="jsx-2700883691 mobile">
+                                <div class="jsx-2700883691 icon">
+                                    <div class="jsx-2700883691"><span class="jsx-2700883691"></span><span class="jsx-2700883691"></span></div>
+                                </div>
+                                <div class="jsx-2700883691 mobile-menu">
+                                    <ul class="jsx-2700883691">
+                                        <li class="jsx-2700883691"><a class="jsx-2700883691" href="https://dsc.gg/fryingpanbot">Support Server</a></li>
+                                        <li class="jsx-2700883691"><a class="jsx-2700883691" href="https://bit.ly/fryingpanbot">Add the bot</a></li>
+                                        <li class="jsx-2700883691"><a class="jsx-2700883691" href="./dashboard">Dashboard</a></li>
+                                        <% if (user) { %>
+                                       <li class="jsx-2700883691" style = "float: right;"><a class="jsx-2700883691 button"
+                                       style = "float: right;" href="./logout">Logout</a></li>
+                                         <% } else { %>
+                                       <li class="jsx-2700883691" style = "float: right;"><a class="jsx-2700883691 button"
+                                       style = "float: right;" href="./login">Login</a></li>
+  <% } %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <div class="jsx-807979791 container">
+                <section class="jsx-807979791 hero">
+                    <div class="jsx-807979791 row">
+                        <div class="jsx-807979791 text">
+                            <h1 class="jsx-807979791 heading">The bot that does it all.</h1>
+                            <p class="jsx-807979791 subheading">Frying Pan Bot is the multi-purpose bot of your server you've been waiting for. It has many features to improve your server in the best way!</p>
+                            <div class="jsx-807979791 buttons"><a class="jsx-807979791 button" href="https://bit.ly/fryingpanbot">Invite the bot</a></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,64L40,101.3C80,139,160,213,240,245.3C320,277,400,267,480,250.7C560,235,640,213,720,170.7C800,128,880,64,960,53.3C1040,43,1120,85,1200,122.7C1280,160,1360,192,1400,208L1440,224L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
+    </body>
+</html>

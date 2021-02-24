@@ -9,7 +9,8 @@ const config = require("../config");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const Discord = require("discord.js");
-const GuildSettings = require("../models/settings");
+const { Database } = require("quickmongo");
+const db = new Database("mongodb+srv://fryingPan:Bfxu63cdP5WaLDEi@frying-pan-bot.a6bv1.mongodb.net/test", "fryingpanbot");
 
 // We instantiate express app and the session store.
 const app = express();
@@ -33,7 +34,7 @@ module.exports = async (client) => {
   passport.use(new Strategy({
     clientID: config.id,
     clientSecret: config.clientSecret,
-    callbackURL: `${config.domain}${config.port == 80 ? "" : `:${config.port}`}/callback`,
+    callbackURL: `https://fpb-dashboard.cocococoder.repl.co/callback`,
     scope: ["identify", "guilds"]
   },
   (accessToken, refreshToken, profile, done) => { // eslint-disable-line no-unused-vars
@@ -136,58 +137,51 @@ module.exports = async (client) => {
 
   // Dashboard endpoint.
   app.get("/dashboard", checkAuth, (req, res) => {
+
     renderTemplate(res, req, "dashboard.ejs", { perms: Discord.Permissions });
   });
 
   // Settings endpoint.
   app.get("/dashboard/:guildID", checkAuth, async (req, res) => {
     // We validate the request, check if guild exists, member is in guild and if member has minimum permissions, if not, we redirect it back.
+
     const guild = client.guilds.cache.get(req.params.guildID);
+    const servericon = guild.iconURL()
     if (!guild) return res.redirect("/dashboard");
     const member = guild.members.cache.get(req.user.id);
     if (!member) return res.redirect("/dashboard");
     if (!member.permissions.has("MANAGE_GUILD")) return res.redirect("/dashboard");
 
     // We retrive the settings stored for this guild.
-    var storedSettings = await GuildSettings.findOne({ gid: guild.id });
-    if (!storedSettings) {
-      // If there are no settings stored for this guild, we create them and try to retrive them again.
-      const newSettings = new GuildSettings({
-        gid: guild.id
-      });
-      await newSettings.save().catch(()=>{});
-      storedSettings = await GuildSettings.findOne({ gid: guild.id });
-    }
-  
-    renderTemplate(res, req, "settings.ejs", { guild, settings: storedSettings, alert: null });
+    let prefix = (await db.get(`Prefix_${guild.id}`))
+            ? await db.get(`Prefix_${guild.id}`)
+            : "!"
+  renderTemplate(res, req, "settings.ejs", { guild, alert: null});
   });
 
     // Settings endpoint.
     app.post("/dashboard/:guildID", checkAuth, async (req, res) => {
         // We validate the request, check if guild exists, member is in guild and if member has minimum permissions, if not, we redirect it back.
+  
         const guild = client.guilds.cache.get(req.params.guildID);
         if (!guild) return res.redirect("/dashboard");
         const member = guild.members.cache.get(req.user.id);
         if (!member) return res.redirect("/dashboard");
         if (!member.permissions.has("MANAGE_GUILD")) return res.redirect("/dashboard");
         // We retrive the settings stored for this guild.
-        var storedSettings = await GuildSettings.findOne({ gid: guild.id });
-        if (!storedSettings) {
-          // If there are no settings stored for this guild, we create them and try to retrive them again.
-          const newSettings = new GuildSettings({
-            gid: guild.id
-          });
-          await newSettings.save().catch(()=>{});
-          storedSettings = await GuildSettings.findOne({ gid: guild.id });
-        }
-      
-        // We set the prefix of the server settings to the one that was sent in request from the form.
-        storedSettings.prefix = req.body.prefix;
-        // We save the settings.
-        await storedSettings.save().catch(() => {});
+          
+        let prefix = (await db.get(`Prefix_${guild.id}`))
+            ? await db.get(`Prefix_${guild.id}`)
+            : "!"
+if (req.body.prefix === '') {
+  renderTemplate(res, req, "settings.ejs", { guild,  alert: "You have to enter a value for the prefix!" });    
+}
+else {
+  console.log(req.body.prefix)
+          db.set(`Prefix_${guild.id}`, req.body.prefix)
+               renderTemplate(res, req, "settings.ejs", { guild,  alert: "Your settings have been saved." });
+}
 
-        // We render the template with an alert text which confirms that settings have been saved.
-        renderTemplate(res, req, "settings.ejs", { guild, settings: storedSettings, alert: "Your settings have been saved." });
     });
 
   app.listen(config.port, null, null, () => console.log(`Dashboard is up and running on port ${config.port}.`));

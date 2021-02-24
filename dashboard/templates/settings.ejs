@@ -1,14 +1,101 @@
+<!DOCTYPE html>
+<head>
+<title>Dashboard</title>
+ <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+ <style>
+ .hello {
+    font-family: 'Montserrat';font-size: 22px;
+    
+}
+input[type=text] {
+  width: 20%;
+  box-sizing: border-box;
+  font-family: 'Montserrat';font-size: 22px;
+}
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+    .heading.jsx-807979791 {
+                white-space: pre-line;
+                font-size: 30px;
+                line-height: 66px;
+                font-family: "Inter", sans-serif;
+                font-weight: 600;
+                margin-bottom: 26px;
+                -webkit-letter-spacing: 0;
+                -moz-letter-spacing: 0;
+                -ms-letter-spacing: 0;
+                letter-spacing: 0;
+                margin-top: 0;
+            }
+   .buttons.jsx-807979791 {
+                margin-top: 48px;
+            }
+            .button.jsx-807979791 {
+                height: 48px;
+                line-height: 48px;
+                display: -webkit-inline-box;
+                display: -webkit-inline-flex;
+                display: -ms-inline-flexbox;
+                display: inline-flex;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                font-size: 16px;
+                font-weight: 600;
+                font-family: "Inter", sans-serif;
+                -webkit-text-decoration: none;
+                text-decoration: none;
+                cursor: pointer;
+                background-color: #1976d2;
+                color: #fff;
+                box-shadow: #1976d2 0 0 0 1px, rgba(11, 37, 75, 0.12) 0 5px 7px -2px;
+                padding: 0 24px;
+                border-radius: 4px;
+                -webkit-transition: all 180ms ease-out 0s;
+                transition: all 180ms ease-out 0s;
+            }
+            .button.jsx-807979791:hover {
+                background: rgb(31, 105, 209);
+                box-shadow: rgb(31, 105, 209) 0 0 0 1px, rgba(11, 37, 75, 0.08) 0 5px 7px -2px;
+            } 
+            .fix{
+    position:fixed;
+    bottom:0px;
+    left:50%;
+}
+}
+        </style>
+</head>
+<body>
+
+<div class = "hello">
 <%- include("partials/header", { bot, user, path, title: "Home" }) %>
-
-<% if (alert) { %>
-  <p><%= alert %></p><br>
-<% } %>
-
+<center>
 <h1><%= guild.name %></h1>
-<form style="margin-top: 1em;" method="POST"> <!-- method="post" triggers a POST request to the same url with the body of the form control inputs -->
+</center>
+<form method="POST">
+
   <p>Prefix:</p>
-  <input type="text" name="prefix" value="<%= settings.prefix %>" placeholder="Your prefix."><br><br>
-  <button type="submit">Save Settings</button>
+  <input type="text" name="prefix" placeholder="Your prefix:"><br><br>
+  </div>
+       <div style="margin : 0; padding-top:0;"class="jsx-807979791 buttons"><button style="margin : 0; padding-top:0;"class="jsx-807979791 button" type = "submit"  >Save Settings</button></div>
 </form>
+<img src="<%=${guild.iconURL}%>" class="fix"/>
+<% if (alert) { %>
+ <script>alert("Settings have succesfully been saved!")</script>
+<% } %>
 
 <%- include("partials/footer") %>

@@ -1,15 +1,105 @@
+<!DOCTYPE html>
+<head>
+<title>Dashboard</title>
+<meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fryingpanbot.tk" />
+		<meta name="theme-color" content="blue">
+        <meta property="og:title" content="Frying Pan Bot" />
+        <meta property="og:description" content="The bot that does it all" />
+        <meta property="og:image" content="https://cdn.discordapp.com/avatars/738446520952815679/f1184f83626ecaaf1bfc116ee5c20cc2.pngg" />
+        <link rel="icon" href="https://cdn.discordapp.com/avatars/738446520952815679/f1184f83626ecaaf1bfc116ee5c20cc2.png">
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" />
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <script src="https://kit.fontawesome.com/6ca40ab5f2.js" crossorigin="anonymous" type="6e2f93ac74d030ae5f49da8e-text/javascript"></script>
+        <style>
+    .heading.jsx-807979791 {
+                white-space: pre-line;
+                font-size: 30px;
+                line-height: 66px;
+                font-family: "Inter", sans-serif;
+                font-weight: 600;
+                margin-bottom: 26px;
+                -webkit-letter-spacing: 0;
+                -moz-letter-spacing: 0;
+                -ms-letter-spacing: 0;
+                letter-spacing: 0;
+                margin-top: 0;
+            }
+   .buttons.jsx-807979791 {
+                margin-top: 48px;
+            }
+            .button.jsx-807979791 {
+                height: 48px;
+                line-height: 48px;
+                display: -webkit-inline-box;
+                display: -webkit-inline-flex;
+                display: -ms-inline-flexbox;
+                display: inline-flex;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                font-size: 16px;
+                font-weight: 600;
+                font-family: "Inter", sans-serif;
+                -webkit-text-decoration: none;
+                text-decoration: none;
+                cursor: pointer;
+                background-color: #1976d2;
+                color: #fff;
+                box-shadow: #1976d2 0 0 0 1px, rgba(11, 37, 75, 0.12) 0 5px 7px -2px;
+                padding: 0 24px;
+                border-radius: 4px;
+                -webkit-transition: all 180ms ease-out 0s;
+                transition: all 180ms ease-out 0s;
+            }
+            .button.jsx-807979791:hover {
+                background: rgb(31, 105, 209);
+                box-shadow: rgb(31, 105, 209) 0 0 0 1px, rgba(11, 37, 75, 0.08) 0 5px 7px -2px;
+            } 
+}
+/*
+.button {
+  background-color: #008CBA; 
+  font-family: 'Montserrat';font-size: 22px;
+  color: white;
+  border: 2px solid #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}*/
+
+        </style>
+    </head>
+<body>
+<center>
 <%- include("partials/header", { bot, user, path, title: "Dashboard" }) %>
 
 <% user.guilds.forEach(guild => {
     const permsOnGuild = new perms(guild.permissions);
     if(!permsOnGuild.has("MANAGE_GUILD")) return;
   %>
-  <hr>
-  <p><%= guild.name %></p>
+  <h2 style="margin-bottom: 0;"class="jsx-807979791 heading"><%= guild.name %></h2>
+    
   <% if (bot.guilds.cache.get(guild.id)) { %>
-    <a href="/dashboard/<%= guild.id %>">Edit Settings</a>
+          <div style="margin : 0; padding-top:0;"class="jsx-807979791 buttons"><a style="margin : 0; padding-top:0;"class="jsx-807979791 button" href="/dashboard/<%= guild.id %>">Edit Settings</a></div>
+           <br>
+           <hr>
+           <br>
   <% } else { %>
-    <a href="<%= `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(`${bot.config.domain}${bot.config.port == 80 ? "" : `:${bot.config.port}`}/callback`)}` %>">Add Bot</a>
+   <div class="jsx-807979791 buttons" style="margin : 0; padding-top:0;"><a class="jsx-807979791 button" style="margin : 0; padding-top:0;"href="<%= `https://discord.com/oauth2/authorize?client_id=738446520952815679&permissions=8&scope=bot&guild_id=${guild.id}` %>"<%= guild.id %>">Add Bot</a></div>
+  <br>                                   
+ <hr>
+ <br>
   <% } %>
   <% }); %>
 <%- include("partials/footer") %>
+</center>
